@@ -1,0 +1,228 @@
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .entry-section {
+    max-width: 1050px;
+    margin-top: 82px;
+  }
+
+  .card-header {
+    height: 275px;
+  }
+
+  .card-footer {
+    min-height: 96px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .entry-section {
+    max-width: 950px;
+    margin-top: 70px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .card-header {
+    height: 250px;
+  }
+
+  .card-footer {
+    min-height: 90px;
+    padding: 14px 16px;
+    gap: 13px;
+  }
+
+  .card-footer > i {
+    width: 43px;
+    height: 43px;
+    flex-basis: 43px;
+    font-size: 20px;
+  }
+
+  .entry-title {
+    font-size: 22px;
+  }
+
+  .entry-subtitle {
+    font-size: 12px;
+  }
+
+  .entry-arrow {
+    width: 43px;
+    height: 43px;
+    flex-basis: 43px;
+    font-size: 23px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .entry-section {
+    margin-top: 60px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .card-header {
+    height: 230px;
+  }
+
+  .card-footer {
+    min-height: 88px;
+  }
+
+  .entry-title {
+    font-size: 20px;
+  }
+
+  .entry-subtitle {
+    font-size: 11px;
+  }
+
+  .footer_slogan {
+    margin-top: 60px;
+    margin-bottom: 35px;
+    gap: 20px;
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .footer_slogan::before,
+  .footer_slogan::after {
+    width: 27px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .entry-section {
+    width: 100%;
+    margin-top: 45px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .entry-section .row {
+    row-gap: 24px !important;
+  }
+
+  .entry-section a {
+    border-radius: 25px;
+  }
+
+  .card-header {
+    height: 260px;
+  }
+
+  .card-footer {
+    min-height: 86px;
+    padding: 12px 14px;
+    gap: 11px;
+  }
+
+  .card-footer > i {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  .entry-title {
+    font-size: 18px;
+  }
+
+  .entry-subtitle {
+    font-size: 10px;
+    white-space: normal;
+  }
+
+  .entry-arrow {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    font-size: 21px;
+  }
+
+  .footer_slogan {
+    margin-top: 45px;
+    margin-bottom: 30px;
+    gap: 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .footer_slogan::before,
+  .footer_slogan::after {
+    width: 20px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .entry-section {
+    margin-top: 35px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .card-header {
+    height: 220px;
+  }
+
+  .card-footer {
+    min-height: 80px;
+    padding: 10px 11px;
+    gap: 9px;
+  }
+
+  .card-footer > i {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    font-size: 16px;
+  }
+
+  .entry-title {
+    font-size: 16px;
+  }
+
+  .entry-subtitle {
+    font-size: 9px;
+  }
+
+  .entry-arrow {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    font-size: 19px;
+  }
+
+  .footer_slogan {
+    margin-top: 35px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    gap: 10px;
+  }
+
+  .footer_slogan::before,
+  .footer_slogan::after {
+    width: 16px;
+  }
+}
