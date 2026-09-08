@@ -151,6 +151,15 @@ img.brand_logo {
   color: var(--dark-color);
 }
 
+.btnProfile a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: inherit;
+  text-decoration: none;
+}
+
 .profile_avatar {
   width: 32px;
   height: 32px;
@@ -215,9 +224,7 @@ img.brand_logo {
   color: var(--light-gray);
   text-decoration: none;
   font-size: 15px;
-  transition:
-    color 0.2s ease,
-    padding-left 0.2s ease;
+  transition: color 0.2s ease, padding-left 0.2s ease;
 }
 
 /* sau hover  */
@@ -287,10 +294,7 @@ img.brand_logo {
   /* trước hover */
   background-color: rgba(255, 255, 255, 0.08);
   color: #d8dde0;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .footer_right a i {
