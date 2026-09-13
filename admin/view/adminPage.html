@@ -61,6 +61,185 @@
         </div>
     </header>
 
+    <section class="admin_management container-fluid px-3 px-lg-5 py-4 py-lg-5">
+        <div class="page_heading mb-4">
+            <div>
+                <span class="eyebrow">TECHSHOP MANAGEMENT</span>
+                <h1>Quản lý sản phẩm</h1>
+                <p>Quản lý sản phẩm, giá bán, hình ảnh và thông tin chi tiết trong cửa hàng.</p>
+            </div>
+
+            <button id="btnThem" class="btn btn-dark add-product-btn" type="button" data-bs-toggle="modal"
+                data-bs-target="#phoneModal">
+                <i class="fa-solid fa-plus me-1"></i>
+                Thêm sản phẩm
+            </button>
+        </div>
+
+        <hr>
+
+        <div class="table_management mt-4">
+            <div class="tableMan_header">
+                <div>
+                    <h2>Product Management</h2>
+                    <p>Danh sách các sản phẩm hiện có</p>
+                </div>
+                <div class="tableMan_tools">
+                    <div class="search_box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="inputSearch" class="form-control" placeholder="Tìm sản phẩm...">
+                    </div>
+                    <select class="form-select brand-select" id="selBrand" aria-label="Lọc theo thương hiệu">
+                        <option selected>Tất cả thương hiệu</option>
+                        <option>Apple</option>
+                        <option>Samsung</option>
+                        <option>Xiaomi</option>
+                        <option>Oppo</option>
+                        <option>Dell</option>
+                        <option>Asus</option>
+                        <option>Lenovo</option>
+                        <option>Acer</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive productTable d-none d-md-block">
+                <table class="table product-table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Hình ảnh</th>
+                            <th>Mô tả sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th class="text-center">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyProduct">
+                        <!-- <tr>
+                            <td>04</td>
+                            <td>
+                                <div class="product-name"><strong>Oppo Find X8 Pro</strong><span>Find X8 Pro
+                                        256GB</span></div>
+                            </td>
+                            <td><span class="brand-badge">Oppo</span></td>
+                            <td class="price">$899</td>
+                            <td>6.78&quot;</td>
+                            <td>50MP</td>
+                            <td><img class="product-thumb"
+                                    src="https://images.unsplash.com/photo-1603921326210-6edd2d60ca68?auto=format&fit=crop&w=160&q=80"
+                                    alt="Oppo"></td>
+                            <td>
+                                <div class="action-group justify-content-end">
+                                    <button class="action-btn edit" data-bs-toggle="modal" data-bs-target="#phoneModal">
+                                        <iclass="fa-regular fa-pen-to-square"></iclass=>
+                                    </button>
+                                    <button class="action-btn delete">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content_cardFooter">
+                <nav aria-label="Phân trang">
+                    <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item disabled"><a class="page-link" href="#">‹</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">›</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="phoneModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content phone-modal">
+                <div class="modal-header">
+                    <div>
+                        <span class="eyebrow">PRODUCT FORM</span>
+                        <h2 class="modal-title" id="exampleModalTitle">Thêm sản phẩm</h2>
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+
+                <form id="productForm">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="id" class="form-label">Mã sản phẩm</label>
+                                <input class="form-control" id="id" placeholder="ID">
+                                <p id="err_required_ID" class="text text-danger"></p>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="name" class="form-label">Tên sản phẩm</label>
+                                <input class="form-control" id="name" placeholder="Ví dụ: iPhone 15 Pro Max">
+                                <p id="err_required_tenSanPham" class="text text-danger"></p>
+                                <p id="err_isName_tenSanPham" class="text text-danger"></p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="price" class="form-label">Giá</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">VNĐ</span>
+                                    <input type="number" class="form-control" id="price">
+                                </div>
+                                <p id="err_required_giaSanPham" class="text text-danger"></p>
+                                <p id="err_regex_giaSanPham" class="text text-danger"></p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="type" class="form-label">Chọn loại sản phẩm</label>
+                                <select class="form-control" id="type">
+                                    <option selected disabled>Chọn loại sản phẩm</option>
+                                    <option value="phone">Phone</option>
+                                    <option value="laptop">Laptop</option>
+                                    <option value="tablet">Tablet</option>
+                                    <option value="watch">Smartwatch</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="img" class="form-label">Đường dẫn hình ảnh</label>
+                                <input type="url" class="form-control" id="img" placeholder="https://...">
+                                <p id="err_required_hinhSanPham" class="text text-danger"></p>
+                                <p id="err_regex_hinhSanPham" class="text text-danger"></p>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="description" class="form-label">Mô tả</label>
+                                <textarea id="description" class="form-control" rows="4"
+                                    placeholder="Nhập mô tả sản phẩm..."></textarea>
+                                <p id="err_required_moTa" class="text text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnClose" class="btn btn-light border"
+                            data-bs-dismiss="modal">Đóng</button>
+
+                        <button type="button" id="btnThemSP" class="btn btn-dark">
+                            <i class="fa-solid fa-circle-plus me-2"></i>
+                            Thêm
+                        </button>
+
+                        <button type="button" id="btnCapNhat" class="btn btn-dark">
+                            <i class="fa-solid fa-circle-down me-2"></i>
+                            Cập nhật </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <footer class=" admin_footer text-center text-lg-start bg-dark text-light gradient-custom">
         <div class="container-fluid px-4 px-lg-5">
@@ -80,13 +259,16 @@
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="text-uppercase fw-bold">Brands</h6>
                     <p>
-                        <a href="#!" class="text-reset">iPhone</a>
+                        <a href="#!" class="text-reset">Apple</a>
                     </p>
                     <p>
                         <a href="#!" class="text-reset">Sumsung</a>
                     </p>
                     <p>
                         <a href="#!" class="text-reset">Dell</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Asus</a>
                     </p>
                     <p>
                         <a href="#!" class="text-reset">Lenovo</a>
@@ -163,6 +345,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <!--Cài đặt thư viện Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+
+    <script type="module" src="../controller/mainAdm.js"></script>
 </body>
 
 </html>
