@@ -9,6 +9,7 @@ import {
 } from "./admCallAPI.js";
 
 let arrProd = [];
+let currentProdList = [];
 let validation = new ValidationAdm();
 
 function formatPrice(price) {
@@ -22,7 +23,9 @@ let showListProd = (arrProd) => {
         <td>${itemProd.id}</td>
         <td style="font-size: 14px; font-weight: 500; width: 20%;">${itemProd.name}</td>
         <td>${
-          itemProd.price != null && !isNaN(Number(itemProd.price))
+          itemProd.price != null &&
+          String(itemProd.price).toLowerCase() !== "null" &&
+          !isNaN(Number(itemProd.price))
             ? formatPrice(itemProd.price)
             : `<span class="no-price">
                   Giá chưa xác định
@@ -97,7 +100,9 @@ let getDSProd = () => {
         );
       });
 
-      showListProd(arrProd);
+      currentProdList = [...arrProd];
+
+      showListProd(currentProdList);
     })
 
     .catch((error) => {
@@ -105,6 +110,38 @@ let getDSProd = () => {
     });
 };
 getDSProd();
+
+let sortProductPrice = (arrSort, optionSort) => {
+  if (optionSort === "asc") {
+    return arrSort.sort((a, b) => {
+      return Number(a.price) - Number(b.price);
+    });
+  }
+
+  if (optionSort === "desc") {
+    return arrSort.sort((a, b) => {
+      return Number(b.price) - Number(a.price);
+    });
+  }
+
+  return arrSort;
+};
+function sortPrice() {
+  let opSort = document.querySelector("#selSortPrice").value;
+
+  if (opSort === "") {
+    showListProd(currentProdList);
+
+    return;
+  }
+
+  let arrSortPrice = sortProductPrice([...currentProdList], opSort);
+
+  currentProdList = arrSortPrice;
+
+  showListProd(currentProdList);
+}
+document.querySelector("#selSortPrice").onchange = sortPrice;
 
 let destructuringForm = () => {
   let arrFormELE = document.querySelectorAll("#productForm .form-control");
@@ -143,7 +180,6 @@ let addProd = () => {
       "Tên sản phẩm nhập vào chưa hợp lệ (Không được bắt đầu băng SỐ, KÍ TỰ ĐẶC BIỆT,...) ",
     );
 
-  //?KIỂM TRA GIÁ - kiểm tra bỏ trống và kiểm tra regex price
   isValid &=
     isRequired(
       price,
@@ -156,7 +192,6 @@ let addProd = () => {
       "Giá sản phẩm nhập vào chưa hợp lệ",
     );
 
-  //?KIỂM TRA ĐƯỜNG DẪN HÌNH ẢNH - kiểm tra bỏ trống và kiểm tra regex url
   isValid &=
     isRequired(
       img,
@@ -169,7 +204,6 @@ let addProd = () => {
       "Đường dẫn hình ảnh nhập vào chưa hợp lệ",
     );
 
-  //?KIỂM TRA MÔ TẢ - kiểm tra bỏ trống
   isValid &= isRequired(
     description,
     "#err_required_moTa",
@@ -186,22 +220,37 @@ let addProd = () => {
 
         document.querySelector("#phoneModal .btn-close").click();
 
-        //* THÀNH CÔNG
         console.log(result);
 
         getDSProd();
       })
 
       .catch((error) => {
-        //! THẤT BẠI
         console.log(error);
       });
   }
 };
 document.querySelector("#btnThemSP").onclick = addProd;
 
+let clearValidation = () => {
+  document.querySelector("#err_required_ID").innerHTML = "";
+
+  document.querySelector("#err_required_tenSanPham").innerHTML = "";
+  document.querySelector("#err_isName_tenSanPham").innerHTML = "";
+
+  document.querySelector("#err_required_giaSanPham").innerHTML = "";
+  document.querySelector("#err_regex_giaSanPham").innerHTML = "";
+
+  document.querySelector("#err_required_hinhSanPham").innerHTML = "";
+  document.querySelector("#err_regex_hinhSanPham").innerHTML = "";
+
+  document.querySelector("#err_required_moTa").innerHTML = "";
+};
 let xemChiTietProd = (idProd) => {
+  clearValidation();
+
   let axiosObj = getProduct(idProd);
+
   axiosObj
     .then((result) => {
       document.querySelector("#exampleModalTitle").innerHTML =
@@ -239,6 +288,8 @@ let xemChiTietProd = (idProd) => {
 };
 window.xemChiTietProd = xemChiTietProd;
 function editPopupAdd() {
+  clearValidation();
+
   document.querySelector("#exampleModalTitle").innerHTML = "Thêm sản phẩm";
 
   document.querySelector("#btnThemSP").style.display = "block";
@@ -301,9 +352,9 @@ let updateProd = () => {
     "Mô tả sản phẩm không được để trống",
   );
 
-  let prod = new SanPham(prodForm);
-
   if (isValid) {
+    let prod = new SanPham(prodForm);
+
     let axiosObj = updateProduct(prod);
     axiosObj
       .then((result) => {
@@ -386,6 +437,8 @@ function searchProduct() {
 
   let mangTK = searchProdName(keyWord);
 
-  showListProd(mangTK);
+  currentProdList = mangTK;
+
+  showListProd(currentProdList);
 }
 document.querySelector("#inputSearch").onkeyup = searchProduct;
