@@ -376,21 +376,18 @@ document.querySelector("#btnCapNhat").onclick = updateProd;
 
 let deleProd = (idProdDel) => {
   let axiosObj = deleteProduct(idProdDel);
+
   axiosObj
     .then((result) => {
-      let prodDeleted = result.data;
+      arrProd = arrProd.filter((item) => {
+        return String(item.id) !== String(idProdDel);
+      });
 
-      prodDeleted.deleted = true;
+      currentProdList = currentProdList.filter((item) => {
+        return String(item.id) !== String(idProdDel);
+      });
 
-      let index = arrProd.findIndex((item) => item.id === idProdDel);
-
-      if (index > -1) {
-        arrProd[index] = prodDeleted;
-      }
-
-      arrProd = arrProd.filter((item) => item.deleted === false);
-
-      showListProd(arrProd);
+      showListProd(currentProdList);
 
       alert(`Xóa sản phẩm có mã ${idProdDel} thành công !!!`);
     })
